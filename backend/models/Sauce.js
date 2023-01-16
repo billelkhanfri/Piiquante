@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+
 
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true },
