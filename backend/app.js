@@ -6,9 +6,10 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce')
 const path = require('path');
+const dotenv = require('dotenv').config();
 
 
-mongoose.connect('mongodb+srv://Billel:Maramfaiza17112013@cluster0.brwroh3.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGODB_CONNECTION,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
