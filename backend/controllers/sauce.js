@@ -1,6 +1,10 @@
+// import dy schema
 const Sauce = require('../models/Sauce');
 
+// import du package  file system qui permet de travailler avec le system de notre machine
 const fs = require('fs');
+
+// function enables to create a sauce
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -16,7 +20,7 @@ exports.createSauce = (req, res, next) => {
         .catch(error => { res.status(400).json({ error }) })
 };
 
-
+// function enables to display one sauce via its params
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({
         _id: req.params.id
@@ -33,6 +37,7 @@ exports.getOneSauce = (req, res, next) => {
     );
 };
 
+// function enables to modify resources
 exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ? {
         ...JSON.parse(req.body.sauce),
@@ -55,6 +60,8 @@ exports.modifySauce = (req, res, next) => {
         });
 };
 
+
+//  function enables to delete sauce
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
@@ -74,6 +81,7 @@ exports.deleteSauce = (req, res, next) => {
         });
 };
 
+// function enables to display all sauces in the database
 exports.getAllSauces = (req, res, next) => {
     Sauce.find().then(
         (sauces) => {
@@ -88,7 +96,7 @@ exports.getAllSauces = (req, res, next) => {
     );
 };
 
-
+// function enables to like or dislike a sauce
 exports.sauceLikes = (req, res, next) => {
 
     switch (req.body.like) {
